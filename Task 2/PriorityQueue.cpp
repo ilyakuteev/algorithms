@@ -1,6 +1,6 @@
 //
 //  PriorityQueue.cpp
-//  Task 2/main.cpp
+//  AlrorithmsTask2
 //
 //  Created by Ilya Kuteev on 11.03.17.
 //  Copyright © 2017 Ilya Kuteev. All rights reserved.
