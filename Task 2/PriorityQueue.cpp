@@ -59,7 +59,7 @@ void PriorityQueue::heapify(int i)
     }
     
     if (i == largestChild) {
-      break;
+      return;
     }
     
     int t = elements[i];
@@ -67,11 +67,6 @@ void PriorityQueue::heapify(int i)
     elements[largestChild] = t;
     i = largestChild;
   }
-  
-  for (int i = 0; i < elements.size(); i++) {
-    std::cout << elements[i] << " ";
-  }
-  std::cout << std::endl;
 }
 
 
