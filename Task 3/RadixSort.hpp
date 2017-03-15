@@ -12,6 +12,6 @@
 #include <vector>
 #include <cinttypes>
 
-void radix_sort(std::vector<int64_t> numbers);
+std::vector<int64_t> radixSort(std::vector<int64_t> &numbers);
 
 #endif /* RadixSort_hpp */
