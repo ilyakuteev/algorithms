@@ -8,6 +8,8 @@
 
 #include <iostream>
 #include <vector>
+#include "RadixSort.hpp"
+
 
 int mediana(int a, int b, int c)
 {
@@ -23,9 +25,11 @@ int mediana(int a, int b, int c)
 
 void quickSort(int l, int r, std::vector<int> &array)
 {
-    int a = array[l];
-    int b = array[(l + r) / 2];
-    int c = array[r];
+    int count = (int)array.size();
+    
+    int a = array[arc4random() % count];
+    int b = array[arc4random() % count];
+    int c = array[arc4random() % count];
     
     int x = mediana(a, b, c);
     int i = l;
@@ -52,7 +56,7 @@ void quickSort(int l, int r, std::vector<int> &array)
 
 int main(int argc, const char * argv[])
 {
-    std::vector<int> array;
+    std::vector<int64_t> array;
     
     int n;
     std::cin >> n;
@@ -63,30 +67,16 @@ int main(int argc, const char * argv[])
         array.push_back(a);
     }
     
-    quickSort(0, n-1, array);
+    //quickSort(0, n-1, array);
+    
+    radix_sort(array);
     
     for(int i = 0; i < n; i++)
     {
         std::cout << array[i] << " ";
     }
     
-    return 0;
-}
-
-void quickSort()
-{
+    std::cout << std::endl;
     
-}
-
-int med (int a, int b, int c)
-{
-    if (a > b) { // ba ?c
-        if (c > a) // bac
-            return a;
-        return (b > c) ? b : c;
-    }
-    // ab ? c
-    if (c > b) // abc
-        return b;
-    return (a > c) ? a : c;
+    return 0;
 }
