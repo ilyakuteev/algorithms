@@ -87,7 +87,7 @@ int main(int argc, const char * argv[])
         array.push_back(a);
     }
     
-    radix_sort(array);
+    array = radixSort(array);
     
     for(int i = 0; i < n; i++)
     {
