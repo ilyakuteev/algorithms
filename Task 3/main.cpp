@@ -67,7 +67,25 @@ int main(int argc, const char * argv[])
         array.push_back(a);
     }
     
-    //quickSort(0, n-1, array);
+    quickSort(array);
+    
+    for(int i = 0; i < n; i++)
+    {
+        std::cout << array[i] << " ";
+    }
+    
+    std::cout << std::endl;
+    
+    array.clear()
+    
+    int n;
+    std::cin >> n;
+    for(int i = 0; i < n; i++)
+    {
+        int a;
+        std::cin >> a;
+        array.push_back(a);
+    }
     
     radix_sort(array);
     
@@ -77,6 +95,8 @@ int main(int argc, const char * argv[])
     }
     
     std::cout << std::endl;
+    
+    quickSort(0, n-1, array);
     
     return 0;
 }
