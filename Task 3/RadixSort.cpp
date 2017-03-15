@@ -7,49 +7,40 @@
 //
 
 #include "RadixSort.hpp"
+#include <cstdlib>
 
-int64_t readix_digit(int64_t num, int64_t pos)
+
+int radix_digit(int64_t num, int64_t pos)
 {
-    int64_t mask = 1;
-    mask <<= pos;
-    return num & mask;
+    return (int) (num >> (8 * pos) & 255);
 }
 
-void radix_sort(std::vector<int64_t> numbers)
-{
+std::vector<int64_t> radixSort(std::vector<int64_t> &numbers) {
+    int b[8];
+    
+    int k = sizeof(int);
+    
     int n = (int)numbers.size();
-    int k = 64;
     
-    std::vector<int64_t> C;
-    std::vector<int64_t> B;
-    
-    for (int i = 0; i < n; i++) {
-        C.push_back(0);
-        B.push_back(0);
-    }
-    
-    
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < k-1; j++) {
-            for (int j = 0; j < n-1; j++) {
-                int64_t d = readix_digit(numbers[j], i);
-                C[d]++;
-                int count = 0;
-                for (int j = 0; j < k-1; j++) {
-                    int64_t temp = C[j];
-                    C[j] = count;
-                    count += temp;
-                    for (int j = 0; j < n-1; j++) {
-                        int64_t d = readix_digit(numbers[j], i);
-                        B[C[d]] = numbers[j];
-                        C[d]++;
-                        for (int i = 0; i < n; i++) {
-                            numbers[i] = B[j];
-                        }
-                    }
-                }
-            }
+    for (int i = 0; i < k; i++) {
+        
+        int c[256] = {0};
+        
+        for (int j = 0; j < n; j++) {
+            c[radix_digit(numbers[j], i)]++;
+        }
+        
+        for (int j = 1; j < 256; j++) {
+            c[j] += c[j - 1];
+        }
+        
+        for (int j = n - 1; j > -1; j--) {
+            b[--c[radix_digit(numbers[j], i)]] = numbers[j];
+        }
+        for (int j = 0; j < n; j++) {
+            numbers[j] = b[j];
         }
     }
     
+    return numbers;
 }
